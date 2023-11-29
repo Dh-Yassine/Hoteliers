@@ -2,7 +2,7 @@ package Hotel;
 
 import java.util.Date;
 
-import Hotel.Chambre.CategorieChambre;
+
 
 class Hotel {
     private String nom;
@@ -14,21 +14,23 @@ class Hotel {
     private int nb_c;
     
     public Hotel(String nom, String categorie, String adresse, Date dateOuverture, Date dateFermeture,int nb_c) {
-		
-		this.nom = nom;
-		this.nb_c=nb_c;
-		this.categorie = categorie;
-		this.adresse = adresse;
-		this.dateOuverture = dateOuverture;
-		this.dateFermeture = dateFermeture;
-		this.chambres = new Chambre[nb_c];
+    	this.nom = nom;
+        this.categorie = categorie;
+        this.adresse = adresse;
+        this.dateOuverture = dateOuverture;
+        this.dateFermeture = dateFermeture;
+        this.chambres = new Chambre[100]; // Assuming a maximum of 100 rooms initially
+        this.nb_c = 0; 
 	}
 
 
 	public int getNb_c() {
 		return nb_c;
 	}
-
+	
+    public void incrementNb_c() {
+        nb_c++;
+    }
 
 	public void setNb_c(int nb_c) {
 		this.nb_c = nb_c;
@@ -95,12 +97,39 @@ class Hotel {
 	public void setChambres(Chambre[] chambres) {
 		this.chambres = chambres;
 	}
-
 	
-	public boolean estChambreDisponible(CategorieChambre categorie, Date dateDebut, Date dateFin) {
-        
-        return true;
+	public void ajouterChambre(CategorieChambre categorie) {
+        if (nb_c < chambres.length) {
+            chambres[nb_c] = new Chambre(nb_c + 1, 1, categorie);
+            incrementNb_c();
+        } else {
+            System.out.println("Maximum number of rooms reached for this hotel.");
+        }
+    }
+	public void supprimerChambre(int numeroChambre) {
+ 
+        if (numeroChambre > 0 && numeroChambre <= nb_c) {
+            for (int i = numeroChambre - 1; i < nb_c - 1; i++) {
+                chambres[i] = chambres[i + 1];
+            }
+            chambres[nb_c - 1] = null; 
+            decrementNb_c();
+            System.out.println("Chambre supprimée avec succès.");
+        } else {
+            System.out.println("Numéro de chambre invalide.");
+        }
     }
 
+    public boolean estOuvert(Date date) {
+        
+        return dateOuverture.before(date) && dateFermeture.after(date);
+    }
+
+    private void decrementNb_c() {
+        nb_c--;
+    }
     
-}
+    }
+	
+
+    

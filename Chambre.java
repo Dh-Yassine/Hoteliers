@@ -10,20 +10,16 @@ public class Chambre {
  
 
    
-    public void ajouterReservation(Reservation reservation) {
-    	
-        
-    }
     
     
 	
-	public Chambre(int numero, int etage, CategorieChambre categorie, Reservation[] reservations, Client[] occupants) {
+	public Chambre(int numero, int etage, CategorieChambre categorie) {
 		super();
 		this.numero = numero;
 		this.etage = etage;
 		this.categorie = categorie;
-		this.reservations = reservations;
-		this.occupants = occupants;
+		this.reservations =new Reservation[100];
+		this.occupants = new Client[100];
 	}
 
 
@@ -61,15 +57,27 @@ public class Chambre {
 	public void setOccupants(Client[] occupants) {
 		this.occupants = occupants;
 	}
-
-
-
-	enum CategorieChambre {
-        SIMPLE,
-        DOUBLE,
-        SUITE
-        
+	public void ajouterReservation(Reservation reservation) {
+        for (int i = 0; i < reservations.length; i++) {
+            if (reservations[i] == null) {
+                reservations[i] = reservation;
+                break;
+            }
+        }
     }
+
+    public void ajouterOccupant(Client occupant) {
+        for (int i = 0; i < occupants.length; i++) {
+            if (occupants[i] == null) {
+                occupants[i] = occupant;
+                break;
+            }
+        }
+    }
+
+
+
+	
 	
 
 

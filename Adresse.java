@@ -1,7 +1,5 @@
 package Hotel;
 
-import java.util.List;
-
 public class Adresse {
 
     private String nomRue;
@@ -16,7 +14,21 @@ public class Adresse {
 
     // Constructeur, getters et setters
 
-    public String getNomRue() {
+    
+	public Adresse(String nomRue, int numeroImmeuble, String commune, String codePostal, String departement,
+			String pays, String numeroTelephone, String adresseCourriel, String adresseWeb) {
+		super();
+		this.nomRue = nomRue;
+		this.numeroImmeuble = numeroImmeuble;
+		this.commune = commune;
+		this.codePostal = codePostal;
+		this.departement = departement;
+		this.pays = pays;
+		this.numeroTelephone = numeroTelephone;
+		this.adresseCourriel = adresseCourriel;
+		this.adresseWeb = adresseWeb;
+	}
+	public String getNomRue() {
 		return nomRue;
 	}
 
@@ -87,11 +99,27 @@ public class Adresse {
 	public void setAdresseWeb(String adresseWeb) {
 		this.adresseWeb = adresseWeb;
 	}
-
-	// Méthode pour obtenir une représentation en lignes pour les enveloppes
-    public List<String> getLignesEnveloppe() {
-        // Implémentation à compléter
-        return null;
+	public void imprimer() {
+        System.out.println(nomRue);
+        System.out.println(numeroImmeuble + " " + commune);
+        if (departement != null && !departement.isEmpty()) {
+            System.out.println(departement);
+        }
+        if (pays != null && !pays.isEmpty()) {
+            System.out.println(pays);
+        }
     }
 
+    // Method to format the address for printing
+    public String getAdresseImprimee() {
+        String adresseImprimee = nomRue + "\n" + numeroImmeuble + " " + commune + "\n";
+        if (departement != null && !departement.isEmpty()) {
+            adresseImprimee += departement + "\n";
+        }
+        adresseImprimee += pays;
+        return adresseImprimee;
+    }
 }
+	
+
+

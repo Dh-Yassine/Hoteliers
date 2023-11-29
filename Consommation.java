@@ -7,13 +7,15 @@ public class Consommation {
     private Date date;
     private double montant;
     private boolean forfaitaire;
+    private int quantite;
 
-    public Consommation(String type, Date date, double montant, boolean forfaitaire) {
+    public Consommation(String type, Date date, double montant, boolean forfaitaire, int quantite) {
 		super();
 		this.type = type;
 		this.date = date;
 		this.montant = montant;
 		this.forfaitaire = forfaitaire;
+		this.quantite = quantite;
 	}
 	public String getType() {
 		return type;
@@ -27,9 +29,6 @@ public class Consommation {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	public double getMontant() {
-		return montant;
-	}
 	public void setMontant(double montant) {
 		this.montant = montant;
 	}
@@ -39,7 +38,18 @@ public class Consommation {
 	public void setForfaitaire(boolean forfaitaire) {
 		this.forfaitaire = forfaitaire;
 	}
+	public int getQuantite() {
+		return quantite;
+	}
+	public void setQuantite(int quantite) {
+		this.quantite = quantite;
+	}
 
-    
-
+    public double getMontant() {
+        if (forfaitaire) {
+            return montant;
+        } else {
+            return montant * quantite;
+        }
+    }
 }
