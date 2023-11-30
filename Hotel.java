@@ -13,7 +13,7 @@ class Hotel {
     private Chambre[] chambres;
     private int nb_c;
     
-    public Hotel(String nom, String categorie, String adresse, Date dateOuverture, Date dateFermeture,int nb_c) {
+    public Hotel(String nom, String categorie, String adresse, Date dateOuverture, Date dateFermeture) {
     	this.nom = nom;
         this.categorie = categorie;
         this.adresse = adresse;
@@ -128,6 +128,18 @@ class Hotel {
     private void decrementNb_c() {
         nb_c--;
     }
+    @Override
+    public String toString() {
+        return "Hotel{" +
+               "nom='" + nom + '\'' +
+               ", categorie='" + categorie + '\'' +
+               ", adresse='" + adresse + '\'' +
+               ", dateOuverture=" + dateOuverture +
+               ", dateFermeture=" + dateFermeture +
+               ", nombre de chambres=" + nb_c +
+               '}';
+    }
+
     
     }
 	

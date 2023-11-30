@@ -8,8 +8,19 @@ public class Client {
     private String nom;
     private String prenom;
     private Adresse adresse;
-    private List<Consommation> consommations;
+    private Consommation[] consommations; 
     private Facture facture;
+    
+	public Client(int numero, String nom, String prenom, Adresse adresse, Consommation[] consommations,
+			Facture facture) {
+		super();
+		this.numero = numero;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.adresse = adresse;
+		this.consommations = consommations;
+		this.facture = facture;
+	}
 	public int getNumero() {
 		return numero;
 	}
@@ -34,21 +45,29 @@ public class Client {
 	public void setAdresse(Adresse adresse) {
 		this.adresse = adresse;
 	}
-	public List<Consommation> getConsommations() {
-		return consommations;
-	}
-	public void setConsommations(List<Consommation> consommations) {
-		this.consommations = consommations;
-	}
+	 public Consommation[] getConsommations() {
+	    return consommations;
+	    }
+
+	 public void setConsommations(Consommation[] consommations) {
+	    this.consommations = consommations;
+	    }
+
 	public Facture getFacture() {
 		return facture;
 	}
 	public void setFacture(Facture facture) {
 		this.facture = facture;
 	}
+	@Override
+	public String toString() {
+	    return "Client{" +
+	           "numero=" + numero +
+	           ", nom='" + nom + '\'' +
+	           ", prenom='" + prenom + '\'' +
+	           ", adresse=" + adresse +
+	           '}';
+	}
 
-    // Constructeur, getters et setters
-
-    // Autres méthodes liées au client
-
+   
 }

@@ -6,7 +6,6 @@ public class Chambre {
     private int etage;
     private CategorieChambre categorie;
     private Reservation[] reservations;
-    private Client[] occupants;
  
 
    
@@ -19,7 +18,6 @@ public class Chambre {
 		this.etage = etage;
 		this.categorie = categorie;
 		this.reservations =new Reservation[100];
-		this.occupants = new Client[100];
 	}
 
 
@@ -51,12 +49,7 @@ public class Chambre {
 	public void setReservations(Reservation[] reservations) {
 		this.reservations = reservations;
 	}
-	public Client[] getOccupants() {
-		return occupants;
-	}
-	public void setOccupants(Client[] occupants) {
-		this.occupants = occupants;
-	}
+	
 	public void ajouterReservation(Reservation reservation) {
         for (int i = 0; i < reservations.length; i++) {
             if (reservations[i] == null) {
@@ -65,22 +58,23 @@ public class Chambre {
             }
         }
     }
-
-    public void ajouterOccupant(Client occupant) {
-        for (int i = 0; i < occupants.length; i++) {
-            if (occupants[i] == null) {
-                occupants[i] = occupant;
-                break;
+	public boolean estDisponible(Reservation reservation) {
+        for (Reservation existingReservation : reservations) {
+            if (existingReservation != null && existingReservation.seChevaucheAvec(reservation)) {
+                return false;
             }
         }
+        return true;
     }
 
-
-
-	
-	
-
-
+	@Override
+	public String toString() {
+	    return "Chambre{" +
+	           "numero=" + numero +
+	           ", etage=" + etage +
+	           ", categorie=" + categorie +
+	           '}';
+	}
    
 }
 

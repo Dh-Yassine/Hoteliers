@@ -82,4 +82,14 @@ public class CategorieChambre {
             return false;
         return true;
     }
+    @Override
+    public String toString() {
+        return "CategorieChambre{" +
+               "bain=" + bain +
+               ", douche=" + douche +
+               ", tele=" + tele +
+               ", nombre_lits=" + nombre_lits +
+               ", prix=" + prix +
+               '}';
+    }
 }
